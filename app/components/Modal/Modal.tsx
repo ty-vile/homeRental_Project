@@ -33,7 +33,7 @@ const Modal: React.FC<ModalProps> = ({
 
   useEffect(() => {
     setShowModal(isOpen);
-  }, []);
+  }, [isOpen]);
 
   const handleClose = useCallback(() => {
     if (disabled) {
@@ -44,7 +44,7 @@ const Modal: React.FC<ModalProps> = ({
 
     setTimeout(() => {
       onClose();
-    }, 300);
+    }, 500);
   }, [disabled, onClose]);
 
   const handleSubmit = useCallback(() => {
