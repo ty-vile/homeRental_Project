@@ -1,16 +1,21 @@
 "use client";
 
+// icons
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useCallback, useState } from "react";
+// react
+import { useState } from "react";
+// react-hook-form
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-
+// modals
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "./Modal";
+// components
 import Heading from "../Heading";
 import Input from "../Inputs/Input";
-import { toast } from "react-toastify";
 import Button from "../Button";
+// toast
+import { toast } from "react-toastify";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();

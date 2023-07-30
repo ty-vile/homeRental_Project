@@ -1,5 +1,6 @@
 "use client";
 
+// icons
 import { BiSearch } from "react-icons/bi";
 
 const Search = () => {
