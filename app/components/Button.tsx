@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg transition w-full 
+      className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg transition w-full border-2
       ${outline ? "bg-white" : "bg-primary hover:bg-primary-dark"}
       ${outline ? "border-black" : "border-primary"}
       ${outline ? "text-black" : "text-white"}
@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
       ${small ? "p-2" : "p-4"}
   `}
     >
-      {Icon && <Icon size={24} className="absolute left-4 top-3" />}
+      {Icon && <Icon size={24} className="absolute left-4 top-4" />}
       {label}
     </button>
   );

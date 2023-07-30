@@ -2,10 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import RegisterModal from "./components/Modal/RegisterModal";
-import { StrictMode } from "react";
-import ClientOnly from "./components/ClientOnly";
 
 export const metadata: Metadata = {
   title: "Holiday Rental App",
@@ -24,9 +23,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <RegisterModal />
         <Navbar />
-
         {children}
       </body>
     </html>
