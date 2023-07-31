@@ -8,8 +8,6 @@ interface AvatarProps {
 }
 
 const Avatar: React.FC<AvatarProps> = ({ src }) => {
-  console.log("SRC", src);
-
   return (
     <Image
       className="rounded-full"

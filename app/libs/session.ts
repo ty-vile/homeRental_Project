@@ -17,7 +17,7 @@ export const authOptions: AuthOptions = {
       clientSecret: process.env.GITHUB_SECRET as string,
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID as string,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
     CredentialsProvider({
@@ -36,8 +36,6 @@ export const authOptions: AuthOptions = {
             email: credentials?.email,
           },
         });
-
-        console.log("AUTHORIZE", user);
 
         if (!user || !user?.hashedPassword) {
           throw new Error("Invalid credentials");
