@@ -17,5 +17,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     },
   });
 
+  console.log("RESGISTER", user);
+
   return NextResponse.json(user);
 }
