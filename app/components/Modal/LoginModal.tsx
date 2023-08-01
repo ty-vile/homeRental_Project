@@ -4,7 +4,7 @@
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 // react
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 // react-hook-form
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -22,12 +22,12 @@ import Heading from "../Heading";
 import Button from "../Button";
 
 const LoginModal = () => {
+  const router = useRouter();
+
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
 
   const [isLoading, setIsLoading] = useState(false);
-
-  const router = useRouter();
 
   const {
     register,
@@ -57,6 +57,11 @@ const LoginModal = () => {
       }
     });
   };
+
+  const toggleModal = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -102,10 +107,10 @@ const LoginModal = () => {
       />
       <div className="text-gray-500 text-center mt-4 font-light">
         <div className="flex items-center justify-center gap-2">
-          <div className="">Dont have an account?</div>
+          <div className="">Don't have an account?</div>
           <div
             className="text-gray-800 cursor-pointer font-semibold"
-            onClick={() => {}}
+            onClick={toggleModal}
           >
             Sign Up
           </div>

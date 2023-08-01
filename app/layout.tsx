@@ -1,11 +1,19 @@
+// tailwind
 import "./globals.css";
+// react
 import type { Metadata } from "next";
+// google fonts
 import { Nunito } from "next/font/google";
+// components
 import Navbar from "./components/Navbar/Navbar";
+// toast
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// modals
 import RegisterModal from "./components/Modal/RegisterModal";
 import LoginModal from "./components/Modal/LoginModal";
+import RentModal from "./components/Modal/RentModal";
+// server functions
 import getCurrentUser from "./actions/getCurrentUser";
 
 export const metadata: Metadata = {
@@ -41,6 +49,7 @@ export default async function RootLayout({
         />
         <RegisterModal />
         <LoginModal />
+        <RentModal />
         <Navbar currentUser={currentUser} />
         {children}
       </body>

@@ -4,7 +4,7 @@
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 // react
-import { useState } from "react";
+import { useCallback, useState } from "react";
 // react-hook-form
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 // modals
@@ -17,9 +17,11 @@ import Button from "../Button";
 // toast
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -63,6 +65,11 @@ const RegisterModal = () => {
         setIsLoading(false);
       });
   };
+
+  const toggleModal = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -119,7 +126,7 @@ const RegisterModal = () => {
           <div className="">Already have an account?</div>
           <div
             className="text-gray-800 cursor-pointer font-semibold"
-            onClick={() => {}}
+            onClick={toggleModal}
           >
             Log in
           </div>
