@@ -15,6 +15,7 @@ import CategoryInput from "../Inputs/CategoryInput";
 import Counter from "../Inputs/Counter";
 // react-hook-form
 import { FieldValues, useForm } from "react-hook-form";
+import ImageUpload from "../Inputs/ImageUpload";
 
 enum STEPS {
   CATEGORY = 0,
@@ -56,6 +57,7 @@ const RentModal = () => {
   const selectedGuestCount = watch("guestCount");
   const selectedRoomCount = watch("roomCount");
   const selectedBathroomCount = watch("bathroomCount");
+  const selectedImageSrc = watch("imageSrc");
 
   const Map = useMemo(
     () =>
@@ -97,28 +99,34 @@ const RentModal = () => {
     return "Back";
   }, [step]);
 
-  let bodyContent = (
-    <div className="flex flex-col gap-8">
-      <Heading
-        title="Which of these best describe your property?"
-        subtitle="Select a category!"
-      />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[60vh] overflow-y-auto p-2">
-        {CATEGORIES.map((category, i) => {
-          return (
-            <CategoryInput
-              key={i}
-              onClick={(category) => setCustomValue("category", category)}
-              selected={selectedCategory === category.label}
-              label={category.label}
-              icon={category.icon}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
+  let bodyContent;
 
+  // FORM STEP 1 - CATEGORY
+  if (step === STEPS.CATEGORY) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Which of these best describe your property?"
+          subtitle="Select a category!"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[60vh] overflow-y-auto p-2">
+          {CATEGORIES.map((category, i) => {
+            return (
+              <CategoryInput
+                key={i}
+                onClick={(category) => setCustomValue("category", category)}
+                selected={selectedCategory === category.label}
+                label={category.label}
+                icon={category.icon}
+              />
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  // FORM STEP 2 - LOCATION
   if (step === STEPS.LOCATION) {
     bodyContent = (
       <div className="flex flex-col gap-8">
@@ -135,6 +143,7 @@ const RentModal = () => {
     );
   }
 
+  // FORM STEP 3 - INFO
   if (step === STEPS.INFO) {
     bodyContent = (
       <div className="flex flex-col gap-8">
@@ -161,6 +170,22 @@ const RentModal = () => {
           subtitle="How many bathrooms does your property have?"
           value={selectedBathroomCount}
           onChange={(value) => setCustomValue("bathroomCount", value)}
+        />
+      </div>
+    );
+  }
+
+  // FORM STEP 4 - IMAGES
+  if (step === STEPS.IMAGES) {
+    bodyContent = (
+      <div className="">
+        <Heading
+          title="Add a photo of your property"
+          subtitle="Show your property off to guests"
+        />
+        <ImageUpload
+          onChange={(value) => setCustomValue("imageSrc", value)}
+          value={selectedImageSrc}
         />
       </div>
     );
