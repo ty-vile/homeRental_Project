@@ -32,19 +32,23 @@ const useFavourite = ({ listingId, currentUser }: IUseFavourite) => {
         let request;
 
         if (isFavourite) {
+          console.log("isFav");
           request = () =>
             fetch(`/api/favourites/${listingId}`, {
               method: "DELETE",
             });
+          toast.success("Listing removed from favourites");
         } else {
           request = () =>
             fetch(`/api/favourites/${listingId}`, {
               method: "POST",
             });
+          toast.success("Listing added to favourites");
         }
 
         await request();
-        toast.success("Listing added to favourites");
+
+        router.refresh();
       } catch (error) {
         toast.error("Something went wrong");
       }
