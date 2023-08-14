@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 // components
 import Input from "../Inputs/Input";
 import Heading from "../Heading";
-import Button from "../Button";
+import Button from "../Buttons/Button";
 
 const LoginModal = () => {
   const router = useRouter();

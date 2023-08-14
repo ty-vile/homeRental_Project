@@ -13,7 +13,7 @@ import Modal from "./Modal";
 // components
 import Heading from "../Heading";
 import Input from "../Inputs/Input";
-import Button from "../Button";
+import Button from "../Buttons/Button";
 // toast
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";

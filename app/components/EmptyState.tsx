@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Heading from "./Heading";
-import Button from "./Button";
+import Button from "./Buttons/Button";
 
 interface EmptyStateProps {
   title?: string;
