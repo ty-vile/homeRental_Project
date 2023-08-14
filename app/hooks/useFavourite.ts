@@ -7,7 +7,7 @@ import { User } from "@prisma/client";
 
 interface IUseFavourite {
   listingId: string;
-  currentUser?: User;
+  currentUser?: User | null;
 }
 
 const useFavourite = ({ listingId, currentUser }: IUseFavourite) => {
@@ -32,7 +32,6 @@ const useFavourite = ({ listingId, currentUser }: IUseFavourite) => {
         let request;
 
         if (isFavourite) {
-          console.log("isFav");
           request = () =>
             fetch(`/api/favourites/${listingId}`, {
               method: "DELETE",
