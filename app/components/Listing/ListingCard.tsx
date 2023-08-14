@@ -7,6 +7,7 @@ import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
 import Image from "next/image";
 import HeartButton from "../Buttons/HeartButton";
+import Button from "../Buttons/Button";
 
 interface ListingCardProps {
   data: Listing;
@@ -67,7 +68,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   return (
     <div
       onClick={() => router.push(`/listings${data.id}`)}
-      className="col-span-1 cursor-pointer group"
+      className="col-span-1 cursor-pointer group hover:shadow-xl rounded-xl p-2"
     >
       <div className="flex flex-col gap-2 w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
@@ -81,6 +82,29 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
+        <div className="font-semibold text-lg">
+          {location?.region}, {location?.label}
+        </div>
+        <div className="font-light text-gray-500">
+          {reservationDate || data.category}
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="font-semibold">$ {price}</div>
+          {!reservation && (
+            <div>
+              {" "}
+              <span className="font-light text-gray-500 text-sm">/ night</span>
+            </div>
+          )}
+        </div>
+        {onAction && actionLabel && (
+          <Button
+            disabled={disabled}
+            small
+            label={actionLabel}
+            onClick={handleCancel}
+          />
+        )}
       </div>
     </div>
   );

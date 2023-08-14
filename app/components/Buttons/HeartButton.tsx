@@ -1,7 +1,7 @@
 "use client";
 
 import { User } from "@prisma/client";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface HeartButtonProps {
   listingId: string;
@@ -12,16 +12,22 @@ const HeartButton: React.FC<HeartButtonProps> = ({
   listingId,
   currentUser,
 }) => {
-  const isFavourite = false;
-  const toggleFavourite = () => {};
+  let isFavourite = false;
+  const toggleFavourite = () => {
+    isFavourite = !isFavourite;
+  };
 
   return (
     <div
-      className="relative hover:opacity-80 transition cur\
-  o"
+      className="relative hover:opacity-80 transition cursor-pointer"
       onClick={toggleFavourite}
     >
-      <AiOutlineHeart size={28} className="hover:scale-95" />
+      <AiOutlineHeart
+        size={36}
+        className={`hover:scale-95 p-1 ${
+          isFavourite ? "bg-red-500 rounded-full text-white " : ""
+        }`}
+      />
     </div>
   );
 };
