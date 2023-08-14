@@ -1,7 +1,25 @@
-"use client";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import getListingById from "@/app/actions/getListingById";
+import EmptyState from "@/app/components/EmptyState";
+import Listing from "./components/Listing";
 
-const ListingPage = () => {
-  return <div>LISTING</div>;
+interface IParams {
+  listingId?: string;
+}
+
+const ListingPage = async ({ params }: { params: IParams }) => {
+  const listing = await getListingById(params);
+  const currentUser = await getCurrentUser();
+
+  if (!listing) {
+    return <EmptyState showReset />;
+  }
+
+  return (
+    <div>
+      <Listing listing={listing} currentUser={currentUser} />
+    </div>
+  );
 };
 
 export default ListingPage;
