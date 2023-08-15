@@ -3,6 +3,7 @@
 // components
 import ListingHeader from "./ListingHeader";
 import ListingInfo from "./ListingInfo";
+import ListingReservation from "./ListingReservation";
 import { CATEGORIES } from "@/app/components/Navbar/Categories";
 import Container from "@/app/components/Container";
 // prisma
@@ -16,7 +17,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 // date
 import { differenceInCalendarDays, eachDayOfInterval, setDate } from "date-fns";
-import ListingReservation from "./ListingReservation";
+import { Range } from "react-date-range";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -52,7 +53,7 @@ const Listing: React.FC<ListingProps> = ({
 
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(price);
-  const [dateRange, setDateRange] = useState(initialDateRange);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
   const loginModal = useLoginModal();
   const router = useRouter();

@@ -7,6 +7,7 @@ import { IconType } from "react-icons";
 import ListingCategory from "./ListingCategory";
 import dynamic from "next/dynamic";
 
+// https://stackoverflow.com/questions/68178127/next-js-with-react-leaflet-window-is-not-defined-when-refreshing-page
 const Map = dynamic(() => import("../../../components/Map"));
 
 interface ListingInfoProps {
