@@ -80,8 +80,7 @@ const Listing: React.FC<ListingProps> = ({
       .then(() => {
         toast.success("Reservation created succesfully");
         setDateRange(initialDateRange);
-        // redirect
-        router.refresh();
+        router.push("/trips");
       })
       .catch((error) => {
         toast.error("Something went wrong");

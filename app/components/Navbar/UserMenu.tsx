@@ -3,6 +3,7 @@
 // react
 import { useState, useCallback } from "react";
 // icons
+import { useRouter } from "next/navigation";
 import { AiOutlineMenu } from "react-icons/ai";
 // components
 import Avatar from "../Avatar";
@@ -24,7 +25,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
+
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const toggleIsOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -63,7 +66,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer p-4">
             {currentUser ? (
               <>
-                <MenuItem onClick={() => {}} label="My trips" />
+                <MenuItem
+                  onClick={() => {
+                    router.push("/trips");
+                  }}
+                  label="My trips"
+                />
                 <MenuItem onClick={() => {}} label="My favourites" />
                 <MenuItem onClick={() => {}} label="My reservations" />
                 <MenuItem onClick={() => {}} label="My properties" />
