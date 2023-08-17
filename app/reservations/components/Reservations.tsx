@@ -2,32 +2,35 @@
 
 // components
 import Container from "@/app/components/Container";
-import Heading from "@/app/components/Heading";
 import ListingCard from "@/app/components/Listing/ListingCard";
 // types
 import { Listing, Reservation, User } from "@prisma/client";
-// react
-import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+// toast
 import { toast } from "react-toastify";
+// react
+import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
+import Heading from "@/app/components/Heading";
 
 type SafeReservation = Omit<Reservation, "listing"> & {
   listing: Listing;
 };
 
-interface TripsProps {
+interface ReservationProps {
   reservations: SafeReservation[];
   currentUser?: User | null;
 }
 
-const Trips: React.FC<TripsProps> = ({ reservations, currentUser }) => {
-  const [deleteId, setDeleteId] = useState("");
-
+const Reservations: React.FC<ReservationProps> = ({
+  reservations,
+  currentUser,
+}) => {
   const router = useRouter();
+  const [deleteId, setDeletingId] = useState("");
 
   const handleCancel = useCallback(
     (id: string) => {
-      setDeleteId(id);
+      setDeletingId(id);
 
       fetch(`/api/reservations/${id}`, {
         method: "DELETE",
@@ -37,10 +40,10 @@ const Trips: React.FC<TripsProps> = ({ reservations, currentUser }) => {
           router.refresh();
         })
         .catch((err) => {
-          toast.error(err?.response?.data?.error);
+          toast.error("Something went wrong");
         })
         .finally(() => {
-          setDeleteId("");
+          setDeletingId("");
         });
     },
     [router]
@@ -48,7 +51,7 @@ const Trips: React.FC<TripsProps> = ({ reservations, currentUser }) => {
 
   return (
     <Container>
-      <Heading title="Your trips" subtitle="A collection of your trips" />
+      <Heading title="Reservations" subtitle="Bookings on your properties" />
       <div className="mt-10 grid grid-grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {reservations.map((reservation, i) => {
           const { id, listing } = reservation;
@@ -71,4 +74,4 @@ const Trips: React.FC<TripsProps> = ({ reservations, currentUser }) => {
   );
 };
 
-export default Trips;
+export default Reservations;

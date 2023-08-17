@@ -81,6 +81,7 @@ const Listing: React.FC<ListingProps> = ({
         toast.success("Reservation created succesfully");
         setDateRange(initialDateRange);
         router.push("/trips");
+        router.refresh();
       })
       .catch((error) => {
         toast.error("Something went wrong");
@@ -99,7 +100,7 @@ const Listing: React.FC<ListingProps> = ({
       );
 
       if (dayCount && price) {
-        setTotalPrice(dayCount * listing.price);
+        setTotalPrice(dayCount * price);
       } else {
         setTotalPrice(price);
       }
