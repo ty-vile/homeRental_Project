@@ -16,6 +16,7 @@ import RentModal from "./components/Modal/RentModal";
 // server functions
 import getCurrentUser from "./actions/getCurrentUser";
 import getListings from "./actions/getListings";
+import SearchModal from "./components/Modal/SearchModal";
 
 export const metadata: Metadata = {
   title: "Holiday Rental App",
@@ -51,6 +52,7 @@ export default async function RootLayout({
         <RegisterModal />
         <LoginModal />
         <RentModal />
+        <SearchModal />
         <Navbar currentUser={currentUser} />
         <div className="pb-20 pt-28">{children}</div>
       </body>
