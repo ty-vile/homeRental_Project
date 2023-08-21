@@ -50,8 +50,6 @@ const Properties: React.FC<PropertiesProps> = ({ listings, currentUser }) => {
       />
       <div className="mt-10 grid grid-grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {listings?.map((listing, i) => {
-          console.log(listing);
-
           return (
             <ListingCard
               key={i}

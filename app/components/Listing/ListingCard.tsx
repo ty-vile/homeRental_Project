@@ -41,9 +41,10 @@ const ListingCard: React.FC<ListingCardProps> = ({
         return;
       }
 
+      // @ts-ignore
       onAction?.(actionId);
     },
-    [disabled, actionId, onAction]
+    [disabled, onAction, actionId]
   );
 
   const price = useMemo(() => {
